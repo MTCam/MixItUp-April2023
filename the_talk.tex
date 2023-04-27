@@ -83,41 +83,46 @@
 	\begin{itemize}
 		\setlength{\itemsep}{0.2in}
 		\item  2D implementation for toy problems and quick testing
-		\item  Implementation on \textit{MIRGE-Com} Next up!
 		\item Analyze:
 		\begin{itemize}
 			\item Turbulence spectra using DNS
 			\item The dispersion relation for entropy stable scheme using linearized case
 		\end{itemize}
+		\item  Implementation in \textit{MIRGE-Com} Up next!
 	\end{itemize}
       \end{frame}
 
       
-\begin{frame}\frametitle{ESDG in \mirgecom{}}
+\begin{frame}\frametitle{Status of ESDG in \mirgecom{}}
 \vspace{15pt}
 \begin{center}
 \mirgecom{} ESDG branch: https://github.com/illinois-ceesd/mirgecom@production-esdg
 \end{center}
 %\begin{multicols}{2}
 \begin{itemize}
-\item Implmentation status
-\begin{itemize}
+% \item Implementation status
+%\begin{itemize}
 \item Work of Thomas Gibson modernized (grudge, mirgecom)
 \item CNS and Euler w/ ESDG for inviscid terms
-\end{itemize}
-\item Using ESDG in \mirgecom{}
+\item Testing/debugging
 \begin{itemize}
-\item Driver update
-\item Examples
+\item selected \mirgecom{} example drivers
+\item Prediction driver
 \end{itemize}
+\end{itemize}
+%\item Using ESDG in \mirgecom{}
+%\begin{itemize}
+%\item Driver update
+%\item Examples
 %\end{itemize}
-\item Troubles
-\begin{itemize}
-\item Multicomponent diffusion (advection ok)
-\item Prediction boundary issue
-\end{itemize}
-\item Can be improved...
-\end{itemize}
+%\end{itemize}
+%\item Troubles
+%\begin{itemize}
+%\item Multicomponent diffusion (advection ok)
+%\item Prediction boundary issue
+%\end{itemize}
+%\item Can be improved...
+%\end{itemize}
 %\columnbreak
 %\includegraphics[width=.48\textwidth]{figures/compare-sod-shock-esdg-grudge.png}
 %\end{multicols}
@@ -198,37 +203,41 @@ return div_operator(vol_term, flux_bnd)
 % Note: uses native mirgecom boundaries, but with CV' and EC fluxes
 \end{frame}
 
-\begin{frame}\frametitle{Using ESDG in \mirgecom{}}
-\begin{multicols}{2}
-\begin{itemize}
-\item Install \mirgecom{} ESDG branch
-\item Update your driver
-\begin{itemize}
-\item ESDG is lazy-only
-\item Use Overintegration (default order$=2p+1$)
-\item Use ESDG operators
-\end{itemize}
-\item Examples:
-\begin{itemize}
-\item sod-mpi.py
-\item pulse-mpi.py
-\item vortex-mpi.py
-\item taylor-green-mpi.py
-\item poieuille-mpi.py
-\item combozzle-mpi.py
-\item thermally-coupled-mpi.py
-\end{itemize}
-\end{itemize}
-% include some performance numbas
-\columnbreak
-\includegraphics[width=.48\textwidth]{figures/compare-sod-shock-esdg-grudge.png}
-\end{multicols}
+\begin{frame}
+  \frametitle{Using ESDG in \mirgecom{}}
+  \begin{minipage}[b]{0.48\textwidth}
+    \begin{itemize}
+      \item Install \mirgecom{} ESDG branch
+      \item Update your driver
+      \begin{itemize}
+        \item ESDG is lazy-only
+        \item Use Overintegration (default order$=2p+1$)
+        \item Use ESDG operators
+      \end{itemize}
+      \item Examples:
+      \begin{itemize}
+        \item sod-mpi.py
+        \item pulse-mpi.py
+        \item vortex-mpi.py
+        \item taylor-green-mpi.py
+        \item poieuille-mpi.py
+        \item combozzle-mpi.py
+        \item thermally-coupled-mpi.py
+      \end{itemize}
+    \end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/compare-sod-shock-esdg-grudge.png}
+    \vspace{5pt} % adjust as needed
+    \footnotesize 1D Sod Shock Tube example in \mirgecom{}. Results match \textit{grudge}. Regular ol' DG crashes on this case.
+  \end{minipage}
 \end{frame}
 
 \begin{frame}\frametitle{ESDG Status for Prediction}
 \begin{multicols}{2}
 \begin{itemize}
-\item ESDG-enabled prediction
+\item Prediction-related code updates:
 \begin{itemize}
 \item \mirgecom{} PR\#877
 \item \textit{drivers\_y3-prediction} PR\#26
