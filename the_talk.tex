@@ -310,25 +310,32 @@ def my_rhs(t, state):
 %  \end{minipage}
 %\end{frame}
 
-\begin{frame}\frametitle{ESDG Status for Prediction}
-\begin{multicols}{2}
-\begin{itemize}
-\item Prediction-related code updates:
-\begin{itemize}
-\item \mirgecom{} PR\#877
-\item \textit{drivers\_y3-prediction} PR\#26
-\end{itemize}
-\item Currently making nans near the isothermal noslip boundaries
-\item Debugging
-\begin{itemize}
-   \item Runs multiphysics example without issue
-   \item Running Poiseuille isothermal noslips without issue 
-   \item Will use Shock1D to debug more
-\end{itemize}
-\end{itemize}
-\columnbreak
-\includegraphics[width=.48\textwidth]{figures/prediction-esdg-nans.png}
-\end{multicols}
+\begin{frame}
+  \frametitle{Status of ESDG in Prediction}
+  \begin{minipage}[b]{0.48\textwidth}
+      \begin{itemize}
+      \item Prediction-related code updates:
+        \begin{itemize}
+        \item \mirgecom{} PR\#877
+        \item \textit{drivers\_y3-prediction} PR\#26
+        \end{itemize}
+      \item Currently making nans near the isothermal noslip boundaries
+      \item Debugging
+        \begin{itemize}
+        \item Runs multiphysics example without issue
+        \item Running Poiseuille isothermal noslips without issue 
+        \item Will use Shock1D to debug more
+        \end{itemize}
+      \end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=.9\textwidth]{figures/prediction-esdg-nans.png}
+    % \includegraphics[width=\textwidth]{figures/compare-sod-shock-esdg-grudge.png}
+    \vspace{5pt} % adjust as needed
+    \footnotesize \textit{drivers\_y3-prediction} 2D smoke test, single gas. ESDG gets NaNs right away.
+    % \footnotesize 1D Sod Shock Tube example in \mirgecom{}. Results match \textit{grudge} for $32~~p\!=\!4$ cells. Regular ol' DG crashes on this case.
+  \end{minipage}
 \end{frame}
 
 \begin{frame}\frametitle{What's next for ESDG?}
