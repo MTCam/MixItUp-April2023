@@ -1,5 +1,98 @@
 \def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
 %
+%======================================================================
+%======================================================================
+%======================================================================
+\begin{frame}{Why Entropy-stable DG}
+	\begin{itemize}
+		\setlength{\itemsep}{0.2in}
+		\item  Challenge:  Shock Capturing DG is dissipative, which damps small scales and lowers the fidelity of turbulence simulations 
+		\item  Entropy stable:
+		\begin{itemize}
+			\item Exact governing equation also implies an entropy condition
+			\item Standard DG only does this approximately
+			\item Make the discretization also strictly obey the entropy condition
+			\item Less numerical dissipation is better for turbulence simulation and shock capturing
+		\end{itemize}
+		\item Mathematical interpretation:
+		\begin{itemize}
+			\item Additional constraint singles out the ``right'' solution when characteristic waves intersect
+			\item The resulting symmetric hyperbolic system is formally well posed
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+%======================================================================
+
+%======================================================================
+\begin{frame}\frametitle{Governing Equation \& Example}
+	\begin{itemize}
+		\item Navier-Stokes: 
+		\begin{equation*}
+			\frac{\partial{\bf{Q}}}{\partial{t}}+\frac{\partial({{\bf f}_i({\bf Q})}-{\bf g}_i({\bf Q}))}{\partial{x}} = 0,\quad(\textbf{x},t)\in \mathbb{R}^d \times [0,\infty)
+		\end{equation*}
+		\begin{equation*}
+			{\bf Q} = \big[\rho, \rho u, \rho E\big]^T
+		\end{equation*}
+		\begin{equation*}
+			\quad {\bf f}({\bf Q}) = \big[\rho u, \rho u^2+p, u(\rho{E}+p)\big]^T
+		\end{equation*}
+		\begin{equation*}
+			\quad {\bf g}({\bf Q}) = \bigg[0, \tau_{1,1}, u\tau_{1,1}-\kappa\frac{\partial{T}}{\partial{x}}\bigg]^T 
+                      \end{equation*}
+                    \item 
+		Shu-Osher shock tube: {\begin{equation*}
+			\begin{bmatrix}
+				\rho(x) \\
+				u(x) \\
+				p(x)
+			\end{bmatrix} = 
+		\begin{bmatrix}
+			3.8571 \\
+			2.6293 \\
+			10.333
+		\end{bmatrix} (x\leq0.125)\quad
+	\begin{bmatrix}
+		\rho(x) \\
+		u(x) \\
+		p(x)
+	\end{bmatrix} = 
+	\begin{bmatrix}
+		1+0.2\sin(16\pi x) \\
+		0 \\
+		1
+	\end{bmatrix} (\text{else})
+		\end{equation*}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{1D Demonstration:  Stable w/o Viscosity}
+	\begin{itemize}
+	
+		\item Discretization: $p=3$ (degree), $K = 300$ (elements)
+		\item Viscosity: ESDG $\mu = 0$, Standard DG $\mu = 3\times 10^{-3}$ (needed for stability)
+                \item DG dissipation damps features \ldots
+                \end{itemize}
+                \medskip
+                \begin{center}
+                          \includegraphics[width=0.6\linewidth]{figures/RHO.png}          
+	\end{center}
+        \centerline{\iPI{Does not need turbulence-harmful dissipation to be stable!}}
+\end{frame}
+
+\begin{frame}{Current Work}
+	\begin{itemize}
+		\setlength{\itemsep}{0.2in}
+		\item  2D implementation for toy problems and quick testing
+		\item  Implementation on \textit{MIRGE-Com} Next up!
+		\item Analyze:
+		\begin{itemize}
+			\item Turbulence spectra using DNS
+			\item The dispersion relation for entropy stable scheme using linearized case
+		\end{itemize}
+	\end{itemize}
+      \end{frame}
+
+      
 \begin{frame}\frametitle{ESDG in \mirgecom{}}
 \vspace{15pt}
 \begin{center}
