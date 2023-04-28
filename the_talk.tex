@@ -108,16 +108,14 @@
 	\begin{itemize}
 		\setlength{\itemsep}{0.2in}
 		\item  2D implementation for toy problems and quick testing
+		\item  Implementation in \textit{MIRGE-Com} (Zirui up next!)
 		\item Analyze:
 		\begin{itemize}
 			\item Turbulence spectra using DNS
 			\item The dispersion relation for entropy stable scheme using linearized case
 		\end{itemize}
-		\item  Implementation in \textit{MIRGE-Com} Up next!
 	\end{itemize}
       \end{frame}
-
-      
 
 
 \begin{frame}\frametitle{Status of ESDG in \mirgecom{}}
@@ -375,6 +373,6 @@ def my_rhs(t, state):
 \item Eliminate the glued-together vol/surf construction in grudge
 \item Better integration with the native operators
 \item Fix bugs in multi-component, and mixtures cases
-\item Extend to viscous terms
+\item Analysis: Do we need to extend ESDG to include viscous terms?
 \end{itemize}
 \end{frame}
