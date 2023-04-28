@@ -163,13 +163,13 @@
 \begin{multicols}{2}
 \begin{itemize}
 \setlength{\itemsep}{3pt}
-\item Project fluid conserved variables ($CV$) to quadrature points
-\item Calculate Entropy Variables ($EV$) from projected $CV_q$
-\item Project $EV$ to element boundaries (communicate too)
-\item Compute modified $CV$, (${CV}^\prime$) from projected $EV$
-\item Flux ${CV}^\prime$ using
+\item Project fluid conserved variables ($\mathbf{Q}$) to quadrature points $\rightarrow\mathbf{Q}_q$
+\item Calculate Entropy Variables ($\mathbf{V}$) from projected $\mathbf{Q}_q$
+\item Project $\mathbf{V}$ to element boundaries $\rightarrow$ $\mathbf{V}_b$ (communicate too)
+\item Compute modified $\mathbf{Q}$ from $(\mathbf{V},\mathbf{V}_b) \rightarrow (\tilde{\mathbf{Q}},\tilde{\mathbf{Q}}_b)$
+\item Flux $\tilde{\mathbf{Q}}$ using
 \begin{itemize}
-\item usual $CV$ BCs and
+\item usual BCs with $\tilde{\mathbf{Q}}_b$
 \item entropy-conserving flux routines
 \end{itemize}
 \item Hit with DG div operator for RHS
