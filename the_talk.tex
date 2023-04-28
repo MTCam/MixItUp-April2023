@@ -24,6 +24,31 @@
 %======================================================================
 
 %======================================================================
+%======================================================================
+\begin{frame}{ES on continuous cases}
+	\begin{itemize}
+		\item The convex entropy function for CNS is \[U = -\rho s/(\gamma-1);\quad s = ln(p\rho^{-\gamma})\]
+		\item The entropy variables ${\bf v} = \frac{\partial U}{\partial{\bf Q}}$.
+		
+		\item Entropy potential \[\psi_i({\bf v}) = {\bf v}^Tf_i({\bf Q}({\bf v})) -F_i({\bf Q}({\bf v})),\quad 1\leq i\leq d\]
+		In CNS $\psi = \sum_{i=1}^d\psi_i = \sum_{i=1}^d\rho u_i$
+		\item The entropy conservative/stable flux $\widetilde{f}_S$ is defined as \[({\bf{v}}_L-{\bf{v}}_R)^T\widetilde{\bf{f}}_S({\bf{Q}}_L,{\bf{Q}}_R)\leq\psi_i({\bf{Q}}_L)-\psi_i({\bf{Q}}_R)\]
+	\end{itemize}
+\end{frame}
+\begin{frame}{Keys for ES in discrete level}
+	\begin{itemize}
+		\item Using entropy stable bi-variate flux with the correct amount of entropy dissipation at each interface. 
+		
+		\item Using flux differencing techniques
+		\begin{itemize}
+			\item Continuum:
+			\[(\widetilde{{\bf f}}_S, \frac{\partial{\bf v}}{\partial x})_{T_\kappa} = (\frac{\partial{\boldsymbol \psi}}{\partial x},{\bf 1})_{T_{\kappa}}\]
+			\item Discretely: \[({\bf v}^k)^T{\bf D}^k{\bf W}\widetilde{{\bf f}}_n^k\neq ({\boldsymbol{\psi}}_n^k)^T{\bf D}^k{\bf W}{\bf 1}^k \]
+		\end{itemize}
+		\item Differentiate at both volume and surface (Hybridized operator is recommended)
+	\end{itemize}
+\end{frame}
+%======================================================================
 \begin{frame}\frametitle{Governing Equation \& Example}
 	\begin{itemize}
 		\item Navier-Stokes: 
@@ -93,6 +118,8 @@
       \end{frame}
 
       
+
+
 \begin{frame}\frametitle{Status of ESDG in \mirgecom{}}
 \vspace{15pt}
 \begin{center}
@@ -266,7 +293,7 @@ def my_rhs(t, state):
     \centering
     \includegraphics[width=\textwidth]{figures/compare-sod-shock-esdg-grudge.png}
     \vspace{5pt} % adjust as needed
-    \footnotesize 1D Sod Shock Tube example in \mirgecom{}. Results match \textit{grudge} for $32~~p\!=\!4$ cells. Regular ol' DG crashes on this case.
+    \footnotesize 1D Sod Shock Tube example in \mirgecom{}. Results match \textit{grudge} for $32~~p\!=\!4$ cells. Standard DG crashes on this case.
   \end{minipage}
 \begin{center}
 %\begin{lstlisting}
