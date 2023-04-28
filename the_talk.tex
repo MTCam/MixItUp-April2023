@@ -372,7 +372,11 @@ def my_rhs(t, state):
 \item Prediction w/ESDG is then main priority, then ...
 \item Eliminate the glued-together vol/surf construction in grudge
 \item Better integration with the native operators
-\item Fix bugs in multi-component, and mixtures cases
+\item Fix bugs in multi-component, and mixtures cases:
+\begin{itemize}
+\item Scalar advection OK
+\item Scalar diffusion not OK
+\end{itemize}
 \item Analysis: Do we need to extend ESDG to include viscous terms?
 \end{itemize}
 \end{frame}
